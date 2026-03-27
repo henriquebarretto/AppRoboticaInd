@@ -1,0 +1,525 @@
+/* ═══════════════════════════════════════════════════
+   CSS VARIABLES — DESIGN TOKENS
+   ═══════════════════════════════════════════════════ */
+:root {
+  --bg:    #080b12;
+  --surf:  #0e1220;
+  --surf2: #141826;
+  --surf3: #1b2135;
+  --brd:   rgba(90, 110, 200, 0.14);
+  --brd2:  rgba(90, 110, 200, 0.28);
+  --txt:   #dde1f2;
+  --muted: #6878a8;
+  --cx:    #ff5571;
+  --cy:    #3ddd7a;
+  --cz:    #4a9dff;
+  --cp:    #ffd84d;
+  --acc:   #4a7cff;
+  --sans:  'DM Sans', sans-serif;
+  --mono:  'JetBrains Mono', monospace;
+}
+
+/* ═══════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--txt);
+  font-family: var(--sans);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ═══════════════════════════════════════════════════
+   TOP BAR
+   ═══════════════════════════════════════════════════ */
+.topbar {
+  flex-shrink: 0;
+  background: var(--surf);
+  border-bottom: 1px solid var(--brd);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topbar h1 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--txt);
+  white-space: nowrap;
+}
+
+.topbar-sep {
+  width: 1px;
+  height: 20px;
+  background: var(--brd2);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════
+   CONTROLS PANEL
+   ═══════════════════════════════════════════════════ */
+/*.controls {
+  flex-shrink: 0;
+  background: var(--surf);
+  border-bottom: 1px solid var(--brd);
+  padding: 12px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}*/
+.controls {
+  flex-shrink: 0;
+  background: var(--surf);
+  border-bottom: 1px solid var(--brd);
+  padding: 12px 20px;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+
+  max-height: 260px;
+  overflow: hidden;
+}
+
+.ctrl-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ctrl-label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: white;
+}
+
+/* ── Rotation list ── */
+/*.rot-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 340px;
+}*/
+.rot-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  min-width: 340px;
+
+  max-height: 120px;   /* limite */
+  overflow-y: auto;    /* scroll */
+  padding-right: 4px;
+}
+.rot-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.rot-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.rot-list::-webkit-scrollbar-thumb {
+  background: var(--brd2);
+  border-radius: 3px;
+}
+
+.rot-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surf2);
+  border: 0.5px solid var(--brd);
+  border-radius: 7px;
+  padding: 7px 10px;
+  transition: border-color 0.15s;
+}
+
+.rot-item:hover {
+  border-color: var(--brd2);
+}
+
+.rot-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--acc);
+  min-width: 22px;
+}
+
+.rot-item label {
+  font-size: 11px;
+  color: white;
+  white-space: nowrap;
+}
+
+/* ── Inputs ── */
+input[type="number"] {
+  background: var(--bg);
+  border: 0.5px solid var(--brd2);
+  border-radius: 5px;
+  color: var(--txt);
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 5px 8px;
+  outline: none;
+  width: 78px;
+  transition: border-color 0.15s;
+}
+
+input[type="number"]:focus {
+  border-color: var(--acc);
+}
+
+select {
+  background: var(--bg);
+  border: 0.5px solid var(--brd2);
+  border-radius: 5px;
+  color: var(--txt);
+  font-family: var(--sans);
+  font-size: 12px;
+  padding: 5px 8px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+select:focus {
+  border-color: var(--acc);
+}
+
+.unit-sel {
+  font-size: 12px;
+  padding: 5px 8px;
+}
+
+/* ── Translation / position row ── */
+.xyz-row {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.xyz-row .fld {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.xyz-row .fld label {
+  font-size: 9px;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+.xyz-row .fld label.lx { color: var(--cx); }
+.xyz-row .fld label.ly { color: var(--cy); }
+.xyz-row .fld label.lz { color: var(--cz); }
+.xyz-row .fld label.lp { color: var(--cp); }
+
+.xyz-row input {
+  width: 64px;
+}
+
+/* ── Buttons ── */
+.btn-row {
+  display: flex;
+  flex-direction: center;
+  gap: 16px;
+}
+
+.btn-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+button {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 7px;
+  cursor: pointer;
+  padding: 7px 14px;
+  transition: all 0.14s;
+  border: 0.5px solid var(--brd2);
+  background: transparent;
+  color: var(--txt);
+  white-space: nowrap;
+}
+
+button:hover {
+  background: var(--surf3);
+  border-color: var(--acc);
+  color: var(--acc);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button.primary {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 14px;
+}
+
+button.primary:hover {
+  background: #5e8dff;
+  border-color: #5e8dff;
+  color: #fff;
+}
+
+button.danger {
+  border-color: rgba(255, 85, 113, 0.35);
+  color: var(--cx);
+  padding: 10px 14px;
+}
+
+button.danger:hover {
+  background: rgba(255, 85, 113, 0.1);
+  border-color: var(--cx);
+  color: var(--cx);
+}
+
+button:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+
+.add-remove {
+  display: flex;
+  gap: 6px;
+}
+
+.add-remove button {
+  padding: 5px 12px;
+  font-size: 11px;
+}
+
+/* ── Side images ── */
+.side-img {
+  margin-top: -15px;
+  border-radius: 7px;
+  border: 0.5px solid var(--brd2);
+}
+
+/* ═══════════════════════════════════════════════════
+   CANVAS AREA
+   ═══════════════════════════════════════════════════ */
+.canvas-area {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.frames-strip {
+  flex: 1;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--brd2) transparent;
+}
+
+.frames-strip::-webkit-scrollbar       { height: 6px; }
+.frames-strip::-webkit-scrollbar-track { background: transparent; }
+.frames-strip::-webkit-scrollbar-thumb { background: var(--brd2); border-radius: 3px; }
+
+.frame-panel {
+  flex-shrink: 0;
+  position: relative;
+  border-right: 1px solid var(--brd);
+  background: var(--surf2);
+  display: flex;
+  flex-direction: column;
+}
+
+.frame-panel:last-child {
+  border-right: none;
+}
+
+.frame-header {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--brd);
+  background: var(--surf2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.frame-n {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: white;
+  font-family: var(--mono);
+}
+
+.frame-desc {
+  font-size: 11px;
+  color: white;
+  font-family: var(--mono);
+  opacity: 0.85;
+}
+
+.frame-canvas-wrap {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+}
+
+.frame-canvas-wrap canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.frame-hint {
+  position: absolute;
+  bottom: 7px;
+  right: 9px;
+  font-size: 8px;
+  color: rgba(100, 120, 180, 0.38);
+  font-family: var(--mono);
+  pointer-events: none;
+}
+
+.frame-legend {
+  position: absolute;
+  bottom: 7px;
+  left: 9px;
+  font-size: 8px;
+  color: var(--muted);
+  font-family: var(--mono);
+  line-height: 1.6;
+  pointer-events: none;
+}
+
+.frame-legend span {
+  display: block;
+}
+
+/* ── Axis color pills in header ── */
+.pill {
+  font-size: 10px;
+  font-family: var(--mono);
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.pill.fixed   { background: rgba(90, 110, 200, 0.18); color: #8899ee; border: 0.5px solid rgba(90, 110, 200, 0.28); }
+.pill.rotated { background: rgba(255, 216, 77, 0.1);  color: #ffd84d; border: 0.5px solid rgba(255, 216, 77, 0.25); }
+
+/* ═══════════════════════════════════════════════════
+   MATRICES PANEL
+   ═══════════════════════════════════════════════════ */
+.matrices-row {
+  flex-shrink: 0;
+  background: var(--surf);
+  border-top: 1px solid var(--brd);
+  padding: 8px 16px;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  align-items: flex-start;
+  scrollbar-width: thin;
+  scrollbar-color: var(--brd2) transparent;
+}
+
+.matrices-row::-webkit-scrollbar       { height: 4px; }
+.matrices-row::-webkit-scrollbar-thumb { background: var(--brd2); border-radius: 2px; }
+
+.mat-block {
+  flex-shrink: 0;
+}
+
+.mat-name {
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+  font-family: var(--mono);
+}
+
+table.mat {
+  border-collapse: collapse;
+  background: var(--surf2);
+  border: 0.5px solid var(--brd);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+table.mat td {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  text-align: right;
+  border: 0.5px solid var(--brd);
+  min-width: 56px;
+  color: var(--txt);
+}
+
+table.mat.accent td                  { color: var(--acc); }
+table.mat.gold td                    { color: #c5cbff; font-weight: 500; }
+table.mat.gold td:last-child         { color: var(--cp); }
+table.mat.gold tr:last-child td      { color: var(--muted); }
+
+.mat-sep {
+  font-size: 18px;
+  color: var(--muted);
+  align-self: center;
+  margin-top: 14px;
+  flex-shrink: 0;
+}
+
+/* ── Vector compare table ── */
+.vec-compare {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-self: center;
+}
+
+.vc-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+}
+
+.vc-label        { color: var(--muted); min-width: 80px; }
+.vc-val          { min-width: 52px; text-align: right; }
+.vc-val.ini      { color: var(--cy); }
+.vc-val.out      { color: var(--cp); }
+.vc-delta        { min-width: 52px; text-align: right; font-size: 9px; }
+.vc-delta.pos    { color: var(--cy); }
+.vc-delta.neg    { color: var(--cx); }
+.vc-delta.zero   { color: var(--muted); }

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rotação 3D — Transformação Homogênea</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ══ TOP BAR ══ -->
+  <div class="topbar">
+    <h1>Rotação 3D &amp; Transformação Homogênea</h1>
+    <div class="topbar-sep"></div>
+    <span style="font-size:13px; color:var(--muted);">Henrique Barretto - 2026 - Robótica Industrial - SENAI CIMATEC</span>
+  </div>
+
+  <!-- ══ CONTROLS ══ -->
+  <div class="controls">
+
+    <!-- Rotations -->
+    <div class="ctrl-group">
+      <div class="ctrl-label">Rotações (ordem importa: R = R₁·R₂·…·Rₙ)</div>
+      <div id="rot-list" class="rot-list"></div>
+      <div class="add-remove">
+        <button onclick="addRot()">+ Rotação</button>
+        <button id="btn-rm" onclick="removeRot()" class="danger">− Remover</button>
+        <select id="unit" class="unit-sel">
+          <option value="deg">Graus °</option>
+          <option value="rad">Radianos</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="topbar-sep" style="height:auto; align-self:stretch;"></div>
+
+    <!-- Translation -->
+    <div class="ctrl-group">
+      <div class="ctrl-label">Translação t</div>
+      <div class="xyz-row">
+        <div class="fld">
+          <label class="lx">Tx</label>
+          <input type="number" id="tx" value="0" step="any">
+        </div>
+        <div class="fld">
+          <label class="ly">Ty</label>
+          <input type="number" id="ty" value="0" step="any">
+        </div>
+        <div class="fld">
+          <label class="lz">Tz</label>
+          <input type="number" id="tz" value="0" step="any">
+        </div>
+      </div>
+    </div>
+
+    <div class="topbar-sep" style="height:auto; align-self:stretch;"></div>
+
+    <!-- Position vector -->
+    <div class="ctrl-group">
+      <div class="ctrl-label">Vetor posição P</div>
+      <div class="xyz-row">
+        <div class="fld">
+          <label class="lp">Px</label>
+          <input type="number" id="px" value="0" step="any">
+        </div>
+        <div class="fld">
+          <label class="lp">Py</label>
+          <input type="number" id="py" value="0" step="any">
+        </div>
+        <div class="fld">
+          <label class="lp">Pz</label>
+          <input type="number" id="pz" value="0" step="any">
+        </div>
+      </div>
+    </div>
+
+    <div class="topbar-sep" style="height:auto; align-self:stretch;"></div>
+
+    <!-- Actions + imgs -->
+    <div class="ctrl-group">
+      <div class="ctrl-label">Ações</div>
+      <div class="btn-row">
+        <div class="btn-col">
+          <button class="primary" onclick="compute()">▶ Calcular</button>
+          <button class="danger"  onclick="resetAll()">↺ Resetar</button>
+        </div>
+        <img src="./assets/img/RegraMaoDireita.jpg"
+             alt="Regra da Mão Direita" width="120" height="100" class="side-img">
+        <img src="./assets/img/arco-orientado.png"
+             alt="Círculo Trigonométrico"  width="120" height="100" class="side-img">
+      </div>
+    </div>
+
+  </div><!-- /.controls -->
+
+  <!-- ══ CANVAS AREA ══ -->
+  <div class="canvas-area">
+    <div id="frames-strip"  class="frames-strip"></div>
+    <div id="matrices-row"  class="matrices-row" style="display:none;"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# logs
+*.log
+
+# dependencies
+node_modules/
+
+# build
+dist/
+build/
+
+# editor
+.vscode/
+.idea/
