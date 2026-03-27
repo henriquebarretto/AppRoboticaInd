@@ -226,7 +226,7 @@ Rz =
 ```
 
 ---
-v
+
 ## Transformação homogênea
 
 A transformação completa é representada por:
